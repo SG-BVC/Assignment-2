@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>The Lyrics Party - Contact Us</title>
+    <meta name="description" content="Contact Us page with an interactive form.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="main">
+            <div class="header_main_1">
+                <h1>The Lyrics Party</h1>
+            </div>
+            <div class="header_main_2">
+                <nav>
+                    <ul class="menu">
+                        <li><a href="lyrics.html">home</a></li>
+                        <li><a href="#">top songs</a></li>
+                        <li><a href="#">community</a></li>
+                        <li><a href="contact.html">contact us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="main">
+            <h1 class="contact_padding">Contact Us</h1>
+            <form id="contactForm" class="form_padding">
+                <label for="firstName">First Name:</label><br>
+                <input type="text" id="firstName" name="firstName" required><br><br>
+
+                <label for="lastName">Last Name:</label><br>
+                <input type="text" id="lastName" name="lastName" required><br><br>
+
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="feedback">Feedback:</label><br>
+                <textarea id="feedback" name="feedback" rows="4" cols="50" required></textarea><br><br>
+
+                <label for="phoneNumbers">Phone Numbers (comma-separated):</label><br>
+                <input type="text" id="phoneNumbers" name="phoneNumbers"><br><br>
+
+                <button type="button" id="submitButton">Send</button>
+            </form>
+            <hr></hr>
+            <h2 class="contact_padding">Submitted Data:</h2>
+            <div id="output"></div>
+        </div>
+    </main>
+    <footer>
+        <div class="main">
+            <p>&copy; 2024 The Lyrics Party</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const feedback = document.getElementById('feedback').value;
+            const phoneNumbersInput = document.getElementById('phoneNumbers').value;
+
+            const phoneNumbers = phoneNumbersInput.split(',').map(num => num.trim()).filter(num => num); // This is just to format the phone numbers properly
+
+            const output = `
+                <p><strong>First Name:</strong> ${firstName}</p>
+                <p><strong>Last Name:</strong> ${lastName}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Feedback:</strong> ${feedback}</p>
+                <p><strong>Phone Numbers:</strong> ${JSON.stringify(phoneNumbers)}</p>
+            `;
+            document.getElementById('output').innerHTML = output;
+        });
+    </script>
+</body>
+</html>
